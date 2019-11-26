@@ -81,6 +81,6 @@ export const PressProvider = ({ children }) => {
   );
 };
 
-export const usePressState = () => useContext(PressStateContext);
-export const usePressDispatch = () => useContext(PressDispatchContext);
-export const usePressNextId = () => useContext(PressNextIdContext);
+export const usePressStateCtx = () => useContext(PressStateContext);
+export const usePressDispatchCtx = () => useContext(PressDispatchContext);
+export const usePressNextIdCtx = () => useContext(PressNextIdContext);

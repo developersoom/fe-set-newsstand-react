@@ -1,9 +1,9 @@
 import React from 'react';
-import Press from './Press';
-import News from './News';
+import PressList from './PressList';
+import NewsContent from './NewsContent';
 import styled from 'styled-components'
 
-const Content = () => {
+const ContentContainer = () => {
   const ContentContainer = styled.div`
     display: flex;
     width: 100%;
@@ -12,10 +12,10 @@ const Content = () => {
 
   return (
     <ContentContainer>
-      <Press />
-      <News />
+      <PressList />
+      <NewsContent />
     </ContentContainer>
   );
 };
 
-export default Content;
+export default ContentContainer;

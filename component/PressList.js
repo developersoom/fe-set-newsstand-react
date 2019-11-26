@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { usePressState, usePressDispatch } from "../PressContext";
+import { usePressStateCtx, usePressDispatchCtx } from "../PressContext";
 
-const Press = () => {
+const PressList = () => {
   const PressContainer = styled.ul`
     width: 15%;
     background-color: #00918e;
@@ -19,8 +19,8 @@ const Press = () => {
     cursor: pointer;
   `
 
-  const pressList = usePressState().data;
-  const dispatch = usePressDispatch();
+  const pressList = usePressStateCtx().data;
+  const dispatch = usePressDispatchCtx();
 
   const onChange = (index) => dispatch({ type: "CHANGE", index });
 
@@ -36,4 +36,4 @@ const Press = () => {
   return <div>로딩중...</div>
 };
 
-export default Press;
+export default PressList;

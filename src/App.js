@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Nav from "../component/Nav";
 import styles from "./App.css";
-import Content from "../component/Content";
+import ContentContainer from "../component/ContentContainer";
 import { PressProvider } from "../PressContext";
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
     <PressProvider>
       <Container>
         <Nav />
-        <Content />
+        <ContentContainer />
       </Container>
     </PressProvider>
   );
