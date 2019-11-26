@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import Nav from "../component/Nav";
+import React from "react";
 import styles from "./App.css";
-import ContentContainer from "../component/ContentContainer";
-import { PressProvider } from "../PressContext";
+import Main from '../component/Main'
 
 const App = () => {
-  const Container = styled.div`
-    width: 70vw;
-    margin: 50px auto;
-    height: 400px;
-    background-color: #110133;
-    color: white;
-  `;
-
-  return (
-    <PressProvider>
-      <Container>
-        <Nav />
-        <ContentContainer />
-      </Container>
-    </PressProvider>
-  );
+  return <Main />
 };
 
 export default App;
