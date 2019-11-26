@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Nav from "./Nav";
-import ContentContainer from "./ContentContainer";
 import { PressProvider } from "../PressContext";
+import PressContent from "./PressContent";
 
 const FullPressList = () => {
   const Container = styled.div`
@@ -14,9 +14,12 @@ const FullPressList = () => {
   `;
 
   return (
-    <Container>
-      <h1>흠...</h1>
-    </Container>
+    <PressProvider>
+      <Container>
+        <Nav />
+        <PressContent />
+      </Container>
+    </PressProvider>
   );
 };
 
