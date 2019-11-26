@@ -52,10 +52,12 @@ const MyPress = () => {
         });
       });
     }
-    console.log(arr)
-
     if (arr.length > 0) setCompanyList(arr);
   }, [data]);
+
+  const unSubscribe = id => {
+    dispatch({ type: "UNSUBSCRIBE", id });
+  };
 
   return (
     companyList && (
@@ -63,6 +65,7 @@ const MyPress = () => {
         {companyList.map(company => (
           <LogoContainer key={company.id}>
             <LogoImg className="imgLogo" src={company.img} />
+            <LogoBtn className="btnLogo" onClick={() => unSubscribe(company.id)}> 해지 </LogoBtn>
           </LogoContainer>
         ))}
       </FlexDiv>

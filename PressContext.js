@@ -36,8 +36,17 @@ const pressReducer = (state, action) => {
         subscribeList:
           state.subscribeList.length === 0
             ? state.data.filter(data => data.id === action.id)
-            : 
-            state.subscribeList.concat(state.data.filter(data => data.id === action.id))
+            : state.subscribeList.concat(
+                state.data.filter(data => data.id === action.id)
+              )
+      };
+    case "UNSUBSCRIBE":
+      return {
+        ...state,
+        subscribeList:
+          state.subscribeList.length === 0
+            ? []
+            : state.subscribeList.filter(data => data.id !== action.id)
       };
     default:
       throw new Error(`unhandled action type : ${action.type}`);
