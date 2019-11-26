@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useReducer,
-  createContext,
-  useContext,
-  useRef
-} from "react";
+import React, {useState,useEffect,useReducer,createContext,useContext,useRef} from "react";
 
 const pressReducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +23,11 @@ const pressReducer = (state, action) => {
         ...state,
         showData: state.data[action.index]
       };
+    case "SUBSCRIBE":
+      return {
+        ...state,
+        subscribeList: state.subscribeList.length === 0 ? [action.id] : [...state.subscribeList, action.id]
+      }
     default:
       throw new Error(`unhandled action type : ${action.type}`);
   }
@@ -44,7 +42,8 @@ export const PressProvider = ({ children }) => {
     loading: false,
     data: null,
     error: null,
-    showData: null
+    showData: null,
+    subscribeList: [],
   });
 
   const fetchData = () => {
@@ -63,8 +62,12 @@ export const PressProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(state);
+  }, [state])
+
   const nextId = useRef(1);
-  const { loading, data: pressData, error, showData } = state;
+  const { loading, data: pressData, error, showData, subscribeList } = state;
 
   if (loading) return <div>로딩중</div>;
   if (error) return <div> 에러 </div>;

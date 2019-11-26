@@ -15,10 +15,10 @@ const PressContent = () => {
     margin: 0.5rem;
     background: white;
     cursor: pointer;
-    &:hover .btnLogo{
+    &:hover .btnLogo {
       display: block;
     }
-    &:hover .imgLogo{
+    &:hover .imgLogo {
       display: none;
     }
   `;
@@ -35,6 +35,7 @@ const PressContent = () => {
   const [data, setData] = useState("");
   const [companyList, setCompanyList] = useState("");
   const state = usePressStateCtx();
+  const dispatch = usePressDispatchCtx();
 
   useEffect(() => {
     setData(state.data);
@@ -55,13 +56,20 @@ const PressContent = () => {
     if (arr.length > 0) setCompanyList(arr);
   }, [data]);
 
+  const subscribe = id => {
+    dispatch({ type: "SUBSCRIBE", id });
+  };
+
   return (
     companyList && (
       <FlexDiv>
         {companyList.map(company => (
           <LogoContainer key={company.id}>
             <LogoImg className="imgLogo" src={company.img} />
-            <LogoBtn className="btnLogo"> 구독 </LogoBtn>
+            <LogoBtn className="btnLogo" onClick={() => subscribe(company.id)}>
+              {" "}
+              구독{" "}
+            </LogoBtn>
           </LogoContainer>
         ))}
       </FlexDiv>
