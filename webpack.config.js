@@ -5,7 +5,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    // route 연결 위해.. - https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url
+    publicPath: '/'
   },
   module: {
     rules: [{
@@ -26,6 +28,10 @@ module.exports = {
         },
       },
     ]
+  },
+  // route 연결
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({

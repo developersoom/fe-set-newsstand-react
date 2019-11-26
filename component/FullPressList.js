@@ -14,12 +14,9 @@ const FullPressList = () => {
   `;
 
   return (
-    <PressProvider>
-      <Container>
-        <Nav />
-        <ContentContainer />
-      </Container>
-    </PressProvider>
+    <Container>
+      <h1>흠...</h1>
+    </Container>
   );
 };
 
