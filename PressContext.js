@@ -1,4 +1,11 @@
-import React, {useState,useEffect,useReducer,createContext,useContext,useRef} from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  createContext,
+  useContext,
+  useRef
+} from "react";
 
 const pressReducer = (state, action) => {
   switch (action.type) {
@@ -26,8 +33,12 @@ const pressReducer = (state, action) => {
     case "SUBSCRIBE":
       return {
         ...state,
-        subscribeList: state.subscribeList.length === 0 ? [action.id] : [...state.subscribeList, action.id]
-      }
+        subscribeList:
+          state.subscribeList.length === 0
+            ? state.data.filter(data => data.id === action.id)
+            : 
+            state.subscribeList.concat(state.data.filter(data => data.id === action.id))
+      };
     default:
       throw new Error(`unhandled action type : ${action.type}`);
   }
@@ -43,7 +54,7 @@ export const PressProvider = ({ children }) => {
     data: null,
     error: null,
     showData: null,
-    subscribeList: [],
+    subscribeList: []
   });
 
   const fetchData = () => {
@@ -64,7 +75,7 @@ export const PressProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(state);
-  }, [state])
+  }, [state]);
 
   const nextId = useRef(1);
   const { loading, data: pressData, error, showData, subscribeList } = state;

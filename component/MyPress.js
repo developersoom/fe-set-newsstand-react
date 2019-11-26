@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { usePressStateCtx, usePressDispatchCtx } from "../PressContext";
 import styled from "styled-components";
 
-const PressContent = () => {
+const MyPress = () => {
   const FlexDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -38,7 +38,7 @@ const PressContent = () => {
   const dispatch = usePressDispatchCtx();
 
   useEffect(() => {
-    setData(state.data);
+    setData(state.subscribeList);
   }, []);
 
   useEffect(() => {
@@ -52,13 +52,10 @@ const PressContent = () => {
         });
       });
     }
+    console.log(arr)
 
     if (arr.length > 0) setCompanyList(arr);
   }, [data]);
-
-  const subscribe = id => {
-    dispatch({ type: "SUBSCRIBE", id });
-  };
 
   return (
     companyList && (
@@ -66,11 +63,10 @@ const PressContent = () => {
         {companyList.map(company => (
           <LogoContainer key={company.id}>
             <LogoImg className="imgLogo" src={company.img} />
-            <LogoBtn className="btnLogo" onClick={() => subscribe(company.id)}> 구독 </LogoBtn>
           </LogoContainer>
         ))}
       </FlexDiv>
     )
   );
 };
-export default PressContent;
+export default MyPress;

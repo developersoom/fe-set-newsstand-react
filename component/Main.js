@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import ContentContainer from "./ContentContainer";
 import { PressProvider } from "../PressContext";
 
-const FullPressList = () => {
+const Main = () => {
   const Container = styled.div`
     width: 70vw;
     margin: 50px auto;
@@ -23,4 +23,4 @@ const FullPressList = () => {
   );
 };
 
-export default FullPressList;
+export default Main;
