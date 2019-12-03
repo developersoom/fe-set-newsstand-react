@@ -1,15 +1,12 @@
 import React from "react";
-import styles from "./App.css";
-import Main from "../component/Main";
+import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import FullPressList from "../component/FullPressList";
 import { PressProvider } from "../PressContext";
 import styled from "styled-components";
 import Nav from "../component/Nav";
-import ContentContainer from "../component/ContentContainer"
+import ContentContainer from "../component/ContentContainer";
 import PressContent from "../component/PressContent";
 import MyPress from "../component/MyPress";
-
 
 const App = () => {
   const Container = styled.div`

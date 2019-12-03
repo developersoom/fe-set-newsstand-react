@@ -1,50 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { usePressStateCtx, usePressDispatchCtx } from "../PressContext";
-import styled from "styled-components";
+import { FlexDiv, LogoContainer, LogoImg, LogoBtn } from './styles/MyPressStyle';
 
 const MyPress = () => {
-  const FlexDiv = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #00918e;
-  `;
-  const LogoContainer = styled.div`
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    margin: 0.5rem;
-    background: white;
-    cursor: pointer;
-    &:hover .btnLogo {
-      display: block;
-    }
-    &:hover .imgLogo {
-      display: none;
-    }
-  `;
-
-  const LogoImg = styled.img``;
-  const LogoBtn = styled.button`
-    width: 100%;
-    font-size: 1rem;
-    display: none;
-    cursor: pointer;
-    padding-top: 6px;
-  `;
-
-  const [data, setData] = useState("");
-  const [companyList, setCompanyList] = useState("");
-  const state = usePressStateCtx();
+  const [myPress, setMyPress] = useState("");
+  const [companyList, setCompanyList] = useState([]);
+  const pressState = usePressStateCtx();
   const dispatch = usePressDispatchCtx();
 
   useEffect(() => {
-    setData(state.subscribeList);
+    setMyPress(pressState.subscribeList);
   }, []);
 
   useEffect(() => {
     let arr = [];
-    if (data) {
-      data.forEach(press => {
+    if (myPress) {
+      myPress.map(press => {
         arr.push({
           name: press.company,
           id: press.id,
@@ -53,7 +24,7 @@ const MyPress = () => {
       });
     }
     if (arr.length > 0) setCompanyList(arr);
-  }, [data]);
+  }, [myPress]);
 
   const unSubscribe = id => {
     dispatch({ type: "UNSUBSCRIBE", id });
