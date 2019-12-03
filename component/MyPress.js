@@ -3,19 +3,19 @@ import { usePressStateCtx, usePressDispatchCtx } from "../PressContext";
 import { FlexDiv, LogoContainer, LogoImg, LogoBtn } from './styles/MyPressStyle';
 
 const MyPress = () => {
-  const [myPress, setMyPress] = useState("");
+  const [myPressList, setMyPressList] = useState([]);
   const [companyList, setCompanyList] = useState([]);
   const pressState = usePressStateCtx();
   const dispatch = usePressDispatchCtx();
 
   useEffect(() => {
-    setMyPress(pressState.subscribeList);
+    setMyPressList(pressState.subscribeList);
   }, []);
 
   useEffect(() => {
     let arr = [];
-    if (myPress) {
-      myPress.map(press => {
+    if (myPressList) {
+      myPressList.map(press => {
         arr.push({
           name: press.company,
           id: press.id,
@@ -24,7 +24,7 @@ const MyPress = () => {
       });
     }
     if (arr.length > 0) setCompanyList(arr);
-  }, [myPress]);
+  }, [myPressList]);
 
   const unSubscribe = id => {
     dispatch({ type: "UNSUBSCRIBE", id });

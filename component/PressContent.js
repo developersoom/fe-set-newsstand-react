@@ -3,19 +3,19 @@ import { usePressStateCtx, usePressDispatchCtx } from "../PressContext";
 import { FlexDiv, LogoContainer, LogoImg, LogoBtn } from './styles/PressContentStyle';
 
 const PressContent = () => {
-  const [data, setData] = useState("");
-  const [companyList, setCompanyList] = useState("");
-  const state = usePressStateCtx();
+  const [PressList, setPressList] = useState([]);
+  const [companyList, setCompanyList] = useState([]);
+  const pressState = usePressStateCtx();
   const dispatch = usePressDispatchCtx();
 
   useEffect(() => {
-    setData(state.data);
+    setPressList(pressState.data);
   }, []);
 
   useEffect(() => {
     let arr = [];
-    if (data) {
-      data.forEach(press => {
+    if (PressList) {
+      PressList.forEach(press => {
         arr.push({
           name: press.company,
           id: press.id,
@@ -25,7 +25,7 @@ const PressContent = () => {
     }
 
     if (arr.length > 0) setCompanyList(arr);
-  }, [data]);
+  }, [PressList]);
 
   const subscribe = id => {
     dispatch({ type: "SUBSCRIBE", id });
@@ -37,7 +37,8 @@ const PressContent = () => {
         {companyList.map(company => (
           <LogoContainer key={company.id}>
             <LogoImg className="imgLogo" src={company.img} />
-            <LogoBtn className="btnLogo" onClick={() => subscribe(company.id)}> 구독 </LogoBtn>
+            <LogoBtn className="btnLogo" onClick={() => subscribe(company.id)}>구독
+            </LogoBtn>
           </LogoContainer>
         ))}
       </FlexDiv>

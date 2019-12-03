@@ -1,31 +1,24 @@
-import React, {
-  useState,
-  useEffect,
-  useReducer,
-  createContext,
-  useContext,
-  useRef
-} from "react";
+import React, { useState,  useEffect,  useReducer, createContext, useContext,  useRef} from "react";
 
 const pressReducer = (state, action) => {
   switch (action.type) {
-    case "LOADING":
+    case "INITLOADING":
       return {
         ...state,
         loading: true
       };
-    case "SUCCESS":
+    case "INITDATASUCCESS":
       return {
         ...state,
         loading: false,
         data: action.data
       };
-    case "ERROR":
+    case "INITERROR":
       return {
         ...state,
         error: action.error
       };
-    case "CHANGE":
+    case "CHANGEPRESS":
       return {
         ...state,
         showData: state.data[action.index]
@@ -67,14 +60,14 @@ export const PressProvider = ({ children }) => {
   });
 
   const fetchData = () => {
-    dispatch({ type: "LOADING" });
+    dispatch({ type: "INITLOADING" });
     fetch("../newsData.json")
       .then(res => res.json())
       .then(res => {
-        dispatch({ type: "SUCCESS", data: res });
+        dispatch({ type: "INITDATASUCCESS", data: res });
       })
       .catch(e => {
-        dispatch({ type: "ERROR", data: e });
+        dispatch({ type: "INITERROR", data: e });
       });
   };
 
